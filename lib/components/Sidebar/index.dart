@@ -22,14 +22,14 @@ class SideBarState extends State<SideBar>{
             title: new Text("Pedidos"),
             onTap: (){
               Navigator.pop(context);
-              Navigator.pushNamed(context, '/HomePage');
+              Navigator.pushReplacementNamed(context, '/HomePage');
             },
           ),
           new ListTile(
             title: new Text('Sucursales'),
             onTap: (){
               Navigator.pop(context);
-              Navigator.pushNamed(context, '/HomeAdminSucursales');
+              Navigator.pushReplacementNamed(context, '/HomeAdminSucursales');
             },
           )
         ],
