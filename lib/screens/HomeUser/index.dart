@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
-import "package:rest_bar/components/Cards/orderCard.dart";
 import "package:rest_bar/components/Cards/menuCard.dart";
+import "package:rest_bar/components/SidebarUser/index.dart";
 import 'style.dart';
 
 
@@ -43,6 +43,7 @@ class HomeUserState extends State<HomeUser>{
     //Se itera por la lista regresando las cards a una lista 
     final Size screenSize = MediaQuery.of(context).size;
     return new Scaffold(
+      drawer: new SideBarUser(),
       appBar: new AppBar(
         title: const Text('Menú'),
       ),

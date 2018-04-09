@@ -99,7 +99,6 @@ class OrderCard extends StatelessWidget {
       shrinkWrap: true,
       padding: const EdgeInsets.all(10.0),
       itemBuilder: (context, i){
-
         if(i==details.length-1){
           return (
             new ListTile(
