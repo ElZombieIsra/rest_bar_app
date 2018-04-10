@@ -31,6 +31,13 @@ class SideBarState extends State<SideBar>{
               Navigator.pop(context);
               Navigator.pushReplacementNamed(context, '/HomeAdminSucursales');
             },
+          ),
+          new ListTile(
+            title: new Text('Cuenta'),
+            onTap: (){
+              Navigator.pop(context);
+              Navigator.pushReplacementNamed(context, '/HomeAdminCuenta');
+            },
           )
         ],
       ),

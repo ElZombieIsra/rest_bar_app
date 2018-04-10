@@ -48,6 +48,8 @@ flutter:
   - assets/pizza_hawaiana.jpg
   - assets/pizza_hawaiana_2.jpg
   - assets/pizza_hawaiana_3.jpg
+  - assets/perfil.png
+  - assets/qr_img.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 
