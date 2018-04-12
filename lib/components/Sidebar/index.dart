@@ -14,29 +14,36 @@ class SideBarState extends State<SideBar>{
       child: new ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          new DrawerHeader(
-            child: new Text('Lidanys'),
-            decoration: new BoxDecoration(color: Colors.orange),
+          const DrawerHeader(
+            child: const Text('Lidanys'),
+            decoration: const BoxDecoration(color: Colors.orange),
           ),
           new ListTile(
-            title: new Text("Pedidos"),
+            title: const Text("Pedidos"),
             onTap: (){
               Navigator.pop(context);
               Navigator.pushReplacementNamed(context, '/HomePage');
             },
           ),
           new ListTile(
-            title: new Text('Sucursales'),
+            title: const Text('Sucursales'),
             onTap: (){
               Navigator.pop(context);
               Navigator.pushReplacementNamed(context, '/HomeAdminSucursales');
             },
           ),
           new ListTile(
-            title: new Text('Cuenta'),
+            title: const Text('Cuenta'),
             onTap: (){
               Navigator.pop(context);
               Navigator.pushReplacementNamed(context, '/HomeAdminCuenta');
+            },
+          ),
+          new ListTile(
+            title: const Text('Productos'),
+            onTap: (){
+              Navigator.pop(context);
+              Navigator.pushReplacementNamed(context, '/AdminProductos');
             },
           )
         ],

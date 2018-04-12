@@ -79,7 +79,7 @@ class AddSucursalesState extends State<AddSucursales>{
       persistentFooterButtons: <Widget>[
         new RaisedButton(
           onPressed: (){
-            Navigator.pop(context);
+            Navigator.pop(context, true);
           },
           child: new Text(
             'Regresar',
@@ -88,7 +88,7 @@ class AddSucursalesState extends State<AddSucursales>{
         ),
         new RaisedButton(
           onPressed: (){
-            Navigator.pop(context);
+            Navigator.pop(context, true);
           },
           child: new Text(
             'Agregar',

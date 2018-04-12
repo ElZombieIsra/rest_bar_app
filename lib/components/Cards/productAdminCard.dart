@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
 
-class MenuCard extends StatelessWidget {
+class ProductAdminCard extends StatelessWidget {
   String title, subtitle, price;
+  var onPressedEdit, onPressedDelete;
   AssetImage img;
-  MenuCard({
+  ProductAdminCard({
     this.title,
     this.subtitle,
     this.price,
     this.img,
+    this.onPressedDelete,
+    this.onPressedEdit,
   });
   @override
   Widget build(BuildContext context) {
-    print(img);
+    String texto = '\$'+price;
     final Size screenSize = MediaQuery.of(context).size;
     if(img!=null){
       return ( new Card(
@@ -38,31 +41,20 @@ class MenuCard extends StatelessWidget {
                       title: new Text(subtitle),
                     ),
                     new ListTile(
-                      title: new Row(
-                        children: <Widget>[
-                          new Icon(Icons.attach_money),
-                          new Text(
-                            price,
-                            style: new TextStyle(
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
-                        ],
-                      )
-                    ),
-                    new Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        new IconButton(
-                          onPressed: (){},
-                          icon: new Icon(Icons.add_circle_outline, color: Colors.deepOrange,),
+                      leading: new Text(
+                        texto,
+                        style: new TextStyle(
+                          fontWeight: FontWeight.bold
                         ),
-                        new Text("0"),
-                        new IconButton(
-                          onPressed: (){},
-                          icon: new Icon(Icons.remove_circle_outline, color: Colors.deepOrangeAccent,),
-                        )
-                      ],
+                      ),
+                      title: new IconButton(
+                        onPressed: onPressedEdit,
+                        icon: new Icon(Icons.edit),
+                      ),
+                      trailing: new IconButton(
+                        onPressed: onPressedDelete,
+                        icon: new Icon(Icons.delete),
+                      ),
                     ),
                   ],
                 ),
@@ -101,31 +93,20 @@ class MenuCard extends StatelessWidget {
                       title: new Text(subtitle),
                     ),
                     new ListTile(
-                      title: new Row(
-                        children: <Widget>[
-                          new Icon(Icons.attach_money),
-                          new Text(
-                            " "+price,
-                            style: new TextStyle(
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
-                        ],
-                      )
-                    ),
-                    new Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        new IconButton(
-                          onPressed: (){},
-                          icon: new Icon(Icons.add_circle_outline, color: Colors.deepOrange,),
+                      leading: new Text(
+                        texto,
+                        style: new TextStyle(
+                          fontWeight: FontWeight.bold
                         ),
-                        new Text("0"),
-                        new IconButton(
-                          onPressed: (){},
-                          icon: new Icon(Icons.remove_circle_outline, color: Colors.deepOrangeAccent,),
-                        )
-                      ],
+                      ),
+                      title: new IconButton(
+                        onPressed: onPressedEdit,
+                        icon: new Icon(Icons.edit),
+                      ),
+                      trailing: new IconButton(
+                        onPressed: onPressedDelete,
+                        icon: new Icon(Icons.delete),
+                      ),
                     ),
                   ],
                 ),
