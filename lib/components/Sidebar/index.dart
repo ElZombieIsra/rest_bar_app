@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:rest_bar/theme/style.dart';
 
 class SideBar extends StatefulWidget{
   const SideBar({Key key}) : super(key: key);
@@ -15,14 +16,21 @@ class SideBarState extends State<SideBar>{
         padding: EdgeInsets.zero,
         children: <Widget>[
           const DrawerHeader(
-            child: const Text('Lidanys'),
-            decoration: const BoxDecoration(color: Colors.orange),
+            child: const Text('Lidanys', style: titleStyleBig,),
+            decoration: const BoxDecoration(color: primaryColor),
           ),
           new ListTile(
             title: const Text("Pedidos"),
             onTap: (){
               Navigator.pop(context);
               Navigator.pushReplacementNamed(context, '/HomePage');
+            },
+          ),
+          new ListTile(
+            title: const Text("Pedidos anteriores"),
+            onTap: (){
+              Navigator.pop(context);
+              Navigator.pushReplacementNamed(context, '/AdminPreviousOrders');
             },
           ),
           new ListTile(

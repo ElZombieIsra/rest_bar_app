@@ -3,6 +3,7 @@ import "package:rest_bar/components/Cards/menuCard.dart";
 import "package:rest_bar/components/SidebarUser/index.dart";
 import "package:rest_bar/components/PricesList/index.dart";
 import 'package:rest_bar/screens/HomeUser/style.dart';
+import 'package:rest_bar/theme/style.dart';
 
 class Cart extends StatefulWidget{
   const Cart({Key key}) : super (key : key);
@@ -13,6 +14,7 @@ class Cart extends StatefulWidget{
 }
 
 class CartState extends State<Cart>{
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final cards = [{
       'title':'Hawaiana',
       'subtitle':'Rica pizza con piña y jamón',
@@ -28,9 +30,15 @@ class CartState extends State<Cart>{
     });
     final Size screenSize = MediaQuery.of(context).size;
     return new Scaffold(
+      key: _scaffoldKey,
       drawer: new SideBarUser(),
       appBar: new AppBar(
-        title: const Text('Carrito de compra'),
+        leading:  new IconButton(
+          icon: new Icon(Icons.dehaze), 
+          color: iconsAppbarColor,
+          onPressed: () => _scaffoldKey.currentState.openDrawer(),
+        ),
+        title: const Text('Carrito de compra', style: titleStyle,),
       ),
       body: new Column(
         children: <Widget>[
@@ -59,7 +67,7 @@ class CartState extends State<Cart>{
         ],
       ),
       bottomNavigationBar: new Container(
-        color: Colors.orange[400],
+        color: secondaryColor,
         child: new ListTile(
           title: new Text(
             'Proceder al pago',

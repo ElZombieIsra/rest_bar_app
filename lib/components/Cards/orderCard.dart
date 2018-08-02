@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:rest_bar/screens/Home/style.dart';
+import 'package:rest_bar/services/codigosProcedencia.dart';
 
-
+// Crea una card con los datos recibidos
 class OrderCard extends StatelessWidget {
-  String cardId, procedencia, price, timeArrive;
+  bool previuos = false;
+  String cardId, procedencia, price, timeArrive, deliveryDate;
   int codeProcedencia, index;
   List<String> details;
   final VoidCallback onPressedOk, onPressedAccept, onPressedDelete;
@@ -18,27 +20,20 @@ class OrderCard extends StatelessWidget {
     this.price,
     this.timeArrive,
     this.index,
+    this.previuos,
+    this.deliveryDate,
   });
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
-    if(codeProcedencia == 1){
-      procedencia = "Facebook";
-      textProcedenciaStyle = new TextStyle(color: Colors.cyan);
-    }
-    else if(codeProcedencia == 2){
-      procedencia = "Google";
-      textProcedenciaStyle = new TextStyle(color: Colors.orange);
-    }
-    else if(codeProcedencia == 3){
-      procedencia = "Pagado";
-      textProcedenciaStyle = new TextStyle(color: Colors.green);
-    }
-    else{
-      procedencia = "Sin referencia";
-      textProcedenciaStyle = new TextStyle(color: Colors.red);
-    }
-    return ( new Card(
+    final Size screenSize = MediaQuery.of(context).size; // Tamaño actual de la pantalla
+
+    // Determina el código de procedencia del pedido y le asigna 
+    CodigosProcedencia codigos = new CodigosProcedencia();
+    List datosProcedencia = codigos.codigo(codeProcedencia);
+    procedencia = datosProcedencia[0];
+    textProcedenciaStyle = datosProcedencia[1];
+    return ( 
+      new Card(
         elevation: 5.0,
         child: new Column(
           mainAxisSize: MainAxisSize.min,
@@ -50,43 +45,51 @@ class OrderCard extends StatelessWidget {
                 procedencia, 
                 style: textProcedenciaStyle,
               ),
-              trailing: new RaisedButton(
-                child: const Text(
-                  'Entregado', 
-                  style: const TextStyle(color: Colors.cyan),
-                ),
-                onPressed: onPressedOk,
-              ),
+              trailing: !previuos 
+                ? new RaisedButton(
+                    child: const Text(
+                      'Entregado', 
+                      style: const TextStyle(color: Colors.cyan),
+                    ),
+                    onPressed: onPressedOk,
+                  ) 
+                : new Text(''),
             ),
             _buildRows(),
             new Divider(),
-            new ListTile(
-              leading: new Text(timeArrive),
-              title: new Form(
-                child: new TextFormField(
-                  obscureText: true,
-                  decoration: new InputDecoration(
-                    hintText: "Tiempo estimado",
-                    hintStyle: inputStyle,
+            // Si no es orden previa, envia el formulario. 
+            // Si es previa, imprime la fecha de entrega
+            !previuos 
+            ? new ListTile(
+                leading: new Text(timeArrive),
+                title: new Form(
+                  child: new TextFormField(
+                    obscureText: true,
+                    decoration: new InputDecoration(
+                      hintText: "Tiempo estimado",
+                      hintStyle: inputStyle,
+                    ),
                   ),
                 ),
+                trailing: new ButtonBar(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    new IconButton(
+                      icon: new Icon(Icons.check),
+                      color: Colors.green,
+                      onPressed: onPressedAccept,
+                    ),
+                    new IconButton(
+                      icon: new Icon(Icons.clear),
+                      color: Colors.red,
+                      onPressed: onPressedDelete,
+                    ),
+                  ],
+                ),
+              )
+            : new ListTile(
+                title: new Text(deliveryDate, style: new TextStyle(fontWeight: FontWeight.bold),),
               ),
-              trailing: new ButtonBar(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  new IconButton(
-                    icon: new Icon(Icons.check),
-                    color: Colors.green,
-                    onPressed: onPressedAccept,
-                  ),
-                  new IconButton(
-                    icon: new Icon(Icons.clear),
-                    color: Colors.red,
-                    onPressed: onPressedDelete,
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       )

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rest_bar/theme/style.dart';
 
 class CurrentOrderCard extends StatefulWidget{
   const CurrentOrderCard({Key key}) : super(key: key);
@@ -36,7 +37,7 @@ class CurrentOrderCardState extends State<CurrentOrderCard>{
           ),
           new Container(
             child: new Divider(
-              color: Colors.orange,
+              color: secondaryColor,
             ), 
             margin: new EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
           ),
@@ -121,7 +122,7 @@ class CurrentOrderCardState extends State<CurrentOrderCard>{
           ),
           new Container(
             child: new Divider(
-              color: Colors.orange,
+              color: secondaryColor,
             ), 
             margin: new EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
           ),
@@ -139,13 +140,13 @@ class CurrentOrderCardState extends State<CurrentOrderCard>{
                 new Text(
                   (price+fee).toString(),
                   style: new TextStyle(
-                    color: Colors.orange,
+                    color: secondaryColor,
                     fontSize: 20.0
                   ),
                 ),
                 new Icon(
                   Icons.attach_money,
-                  color: Colors.orange,
+                  color: secondaryColor,
                 ),
               ],
             ),

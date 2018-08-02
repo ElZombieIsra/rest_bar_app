@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:rest_bar/theme/style.dart';
 
 class MenuCard extends StatelessWidget {
   String title, subtitle, price;
@@ -55,12 +55,12 @@ class MenuCard extends StatelessWidget {
                       children: <Widget>[
                         new IconButton(
                           onPressed: (){},
-                          icon: new Icon(Icons.add_circle_outline, color: Colors.deepOrange,),
+                          icon: new Icon(Icons.add_circle_outline, color: secondaryColor,),
                         ),
                         new Text("0"),
                         new IconButton(
                           onPressed: (){},
-                          icon: new Icon(Icons.remove_circle_outline, color: Colors.deepOrangeAccent,),
+                          icon: new Icon(Icons.remove_circle_outline, color: secondaryColor,),
                         )
                       ],
                     ),

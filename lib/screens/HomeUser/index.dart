@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:rest_bar/components/Cards/menuCard.dart";
 import "package:rest_bar/components/SidebarUser/index.dart";
 import 'style.dart';
+import 'package:rest_bar/theme/style.dart';
 
 
 class HomeUser extends StatefulWidget {
@@ -43,9 +44,22 @@ class HomeUserState extends State<HomeUser>{
     //Se itera por la lista regresando las cards a una lista 
     final Size screenSize = MediaQuery.of(context).size;
     return new Scaffold(
+      key: _scaffoldKey,
       drawer: new SideBarUser(),
       appBar: new AppBar(
-        title: const Text('Menú'),
+        leading:  new IconButton(
+          icon: new Icon(Icons.dehaze), 
+          color: iconsAppbarColor,
+          onPressed: () => _scaffoldKey.currentState.openDrawer(),
+        ),
+        title: const Text('Menú', style: titleStyle,),
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.shopping_cart), 
+            color: iconsAppbarColor, 
+            onPressed: () => Navigator.pushNamed(context, '/CartUser'),
+          )
+        ],
       ),
       body: new Column(
         children: <Widget>[

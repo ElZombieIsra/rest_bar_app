@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'style.dart';
 import 'package:rest_bar/components/SideBar/index.dart';
 import 'package:rest_bar/components/Cards/sucursalesCard.dart';
+import 'package:rest_bar/theme/style.dart';
 
 class AdminSucursales extends StatefulWidget{
 const AdminSucursales ({Key key}) : super(key:key);
@@ -12,6 +13,7 @@ AdminSucursalesState createState()=> new AdminSucursalesState();
 }
 
 class AdminSucursalesState extends State<AdminSucursales>{
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final cards = [
     {
       'nameSucursal':'Alemán',
@@ -25,9 +27,15 @@ class AdminSucursalesState extends State<AdminSucursales>{
   Widget build(BuildContext context){
     final Size screenSize = MediaQuery.of(context).size;
     return new Scaffold(
+      key: _scaffoldKey,
       drawer: new SideBar(),
       appBar: new AppBar(
-        title: const Text("Sucursales"),
+        leading:  new IconButton(
+          icon: new Icon(Icons.dehaze), 
+          color: iconsAppbarColor,
+          onPressed: () => _scaffoldKey.currentState.openDrawer(),
+        ),
+        title: const Text("Sucursales", style: titleStyle,),
       ),
       body: new Column(
         mainAxisSize: MainAxisSize.min,
@@ -46,7 +54,7 @@ class AdminSucursalesState extends State<AdminSucursales>{
                     new Icon(Icons.add_location),
                     new Text(
                       "Agregar sucursales",
-                      style: titleStyle,
+                      style: titleStyleWidget,
                     ),
                     new Container()
                   ],

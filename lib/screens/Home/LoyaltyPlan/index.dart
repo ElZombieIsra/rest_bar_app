@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rest_bar/components/Sidebar/index.dart';
+import 'package:rest_bar/theme/style.dart';
 
 class LoyaltyPlan extends StatefulWidget{
   const LoyaltyPlan({Key key}): super(key : key);
@@ -15,14 +16,21 @@ class LoyaltyPlanState extends State<LoyaltyPlan>{
     'mail':'raul.epsidev@gmail.com',
     'qr':'assets/perfil.png',
   }];
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   ExactAssetImage qr = new ExactAssetImage('assets/qr_img.png');
   Widget build(BuildContext context){
     final usuario = user[0];
     final Size screenSize = MediaQuery.of(context).size;
     return new Scaffold(
+      key: _scaffoldKey,
       drawer: new SideBar(),
       appBar: new AppBar(
-        title: const Text('Cuenta'),
+        leading:  new IconButton(
+          icon: new Icon(Icons.dehaze), 
+          color: iconsAppbarColor,
+          onPressed: () => _scaffoldKey.currentState.openDrawer(),
+        ),
+        title: const Text('Cuenta', style: titleStyle,),
       ),
       body: new Container(
         padding: new EdgeInsets.all(20.0),

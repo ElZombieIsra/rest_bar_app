@@ -4,6 +4,8 @@ import "package:rest_bar/components/Cards/productAdminCard.dart";
 import 'style.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
+import 'package:rest_bar/services/crearAlerta.dart';
+import 'package:rest_bar/theme/style.dart';
 
 class Products extends StatefulWidget{
   const Products({Key key}) : super(key : key);
@@ -43,6 +45,8 @@ class ProductsState extends State<Products>{
     final TextEditingController _controllerA = new TextEditingController();
     final TextEditingController _controllerB = new TextEditingController();
     final Size screenSize = MediaQuery.of(context).size;
+    CrearAlerta alert = new CrearAlerta();
+
     List itemsDropdown = categorias.map((String value) {
       return new DropdownMenuItem<String>(
         value: value,
@@ -71,6 +75,7 @@ class ProductsState extends State<Products>{
                     controller: controller,
                     decoration: new InputDecoration(
                       labelText: 'Nombre de la categoria',
+                      labelStyle:  labelTextStyle,
                     ),
                   ),
                 );
@@ -279,9 +284,15 @@ class ProductsState extends State<Products>{
       ),
     );
     return new Scaffold(
+      key: _scaffoldKey,
       drawer: new SideBar(),
       appBar: new AppBar(
-        title: const Text('Productos'),
+        leading:  new IconButton(
+          icon: new Icon(Icons.dehaze), 
+          color: iconsAppbarColor,
+          onPressed: () => _scaffoldKey.currentState.openDrawer(),
+        ),
+        title: const Text('Productos', style: titleStyle,),
       ),
       body: new Column(
         children: <Widget>[
@@ -386,7 +397,7 @@ class ProductsState extends State<Products>{
                     price: prod['price'],
                     img: prod['img'],
                     onPressedDelete: (){
-                      _showAlert(
+                      alert.showAlert(
                         context, 
                         'Alerta', 
                         '¿Estás seguro que queires borrar este producto?', 
@@ -467,32 +478,6 @@ class ProductsState extends State<Products>{
         ],
       ),
     );
-  }
-  _showAlert(BuildContext context, title, description, titleAccept, titleError, accept, error) async {
-    return showDialog<Null>(
-      context: context,
-      barrierDismissible: false,
-      child: new AlertDialog(
-        title: new Text(title),
-        content: new SingleChildScrollView(
-          child: new ListBody(
-            children: <Widget>[
-              new Text(description),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          new FlatButton(
-            child: new Text(titleError),
-            onPressed: error,
-          ),
-          new FlatButton(
-            child: new Text(titleAccept),
-            onPressed: accept,
-          ),
-        ],
-      ),
-    ); 
   }
   _showDialog(String title, String actionTitle1, String actionTitle2, action1, action2, Widget child) async {
     await showDialog<String>(

@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:rest_bar/components/SidebarUser/index.dart";
 import "package:rest_bar/components/Cards/currentOrderCard.dart";
+import 'package:rest_bar/theme/style.dart';
 
 class OrdersUser extends StatefulWidget{
   const OrdersUser({Key key}) : super(key: key);
@@ -11,7 +12,8 @@ class OrdersUser extends StatefulWidget{
 }
 
 class OrdersUserState extends State<OrdersUser>{
-  Color _underlineColor1 = Colors.orange, _underlineColor2 = Colors.white10, _textColor1 = Colors.orange, _textColor2 = Colors.grey;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  Color _underlineColor1 = secondaryColor, _underlineColor2 = Colors.white10, _textColor1 = secondaryColor, _textColor2 = Colors.grey;
   var b = true;
   final orderProcess = [{
       'title':'',
@@ -27,13 +29,13 @@ class OrdersUserState extends State<OrdersUser>{
     changeColor(b){
       if(b){
         setState((){
-          _underlineColor1 = _textColor1 = Colors.orange;
+          _underlineColor1 = _textColor1 = secondaryColor;
           _underlineColor2 = Colors.white;
           _textColor2 = Colors.grey;
         });
       } else if(!b){
         setState((){
-          _underlineColor2 = _textColor2 = Colors.orange;
+          _underlineColor2 = _textColor2 = secondaryColor;
           _underlineColor1 = Colors.white;
           _textColor1 = Colors.grey;
         });
@@ -41,9 +43,22 @@ class OrdersUserState extends State<OrdersUser>{
     }
     final Size screenSize = MediaQuery.of(context).size;
     return new Scaffold(
+      key: _scaffoldKey,
       drawer: new SideBarUser(),
       appBar: new AppBar(
-        title: const Text('Órdenes'),
+        leading:  new IconButton(
+          icon: new Icon(Icons.dehaze), 
+          color: iconsAppbarColor,
+          onPressed: () => _scaffoldKey.currentState.openDrawer(),
+        ),
+        title: const Text('Órdenes', style: titleStyle,),
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.shopping_cart), 
+            color: iconsAppbarColor, 
+            onPressed: () => Navigator.pushNamed(context, '/CartUser'),
+          )
+        ],
       ),
       body: new Column(
         children: <Widget>[
@@ -104,7 +119,7 @@ class OrdersUserState extends State<OrdersUser>{
                     new Text(
                       '1:00pm',
                       style: new TextStyle(
-                        color: Colors.orange[300],
+                        color: secondaryColor,
                         fontSize: 9.0,
                       ),
                     ),
@@ -118,7 +133,7 @@ class OrdersUserState extends State<OrdersUser>{
                     new Container(
                       width: screenSize.width/7,
                       height: screenSize.height/10,
-                      decoration: new BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
+                      decoration: new BoxDecoration(color: secondaryColor, shape: BoxShape.circle),
                       child: new Icon(Icons.done_all, color: Colors.white, size: 35.0,),
                     ),
                   ],
@@ -131,7 +146,7 @@ class OrdersUserState extends State<OrdersUser>{
                     new Text(
                       '1:03pm',
                       style: new TextStyle(
-                        color: Colors.orange[300],
+                        color: secondaryColor,
                         fontSize: 9.0,
                       ),
                     ),
@@ -145,7 +160,7 @@ class OrdersUserState extends State<OrdersUser>{
                     new Container(
                       width: screenSize.width/7,
                       height: screenSize.height/10,
-                      decoration: new BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
+                      decoration: new BoxDecoration(color: secondaryColor, shape: BoxShape.circle),
                       child: new Icon(Icons.restaurant_menu, color: Colors.white, size: 35.0,),
                     ),
                   ],
@@ -158,21 +173,21 @@ class OrdersUserState extends State<OrdersUser>{
                     new Text(
                       '_',
                       style: new TextStyle(
-                        color: Colors.grey[400],
+                        color: mutedColor,
                         fontSize: 9.0,
                       ),
                     ),
                     new Text(
                       'Entregado',
                       style: new TextStyle(
-                        color: Colors.grey[400],
+                        color: mutedColor,
                         fontSize: 10.0,
                       ),
                     ),
                     new Container(
                       width: screenSize.width/7,
                       height: screenSize.height/10,
-                      decoration: new BoxDecoration(color: Colors.grey[200], shape: BoxShape.circle),
+                      decoration: new BoxDecoration(color: mutedColor, shape: BoxShape.circle),
                       child: new Icon(Icons.home, color: Colors.white, size: 35.0,),
                     ),
                   ],

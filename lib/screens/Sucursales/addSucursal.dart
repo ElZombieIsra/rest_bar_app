@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'style.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
+import 'package:rest_bar/theme/style.dart';
 
 class AddSucursales extends StatefulWidget{
 const AddSucursales ({Key key}) : super(key:key);
@@ -12,13 +13,20 @@ AddSucursalesState createState()=> new AddSucursalesState();
 }
 
 class AddSucursalesState extends State<AddSucursales>{
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final TextEditingController _controllerA = new TextEditingController();
   final TextEditingController _controllerB = new TextEditingController();
   Widget build(BuildContext context){
     final Size screenSize = MediaQuery.of(context).size;
     return new Scaffold(
+      key: _scaffoldKey,
       appBar: new AppBar(
-        title: const Text("Agregar sucursal"),
+        leading:  new IconButton(
+          icon: new Icon(Icons.arrow_back), 
+          color: iconsAppbarColor,
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text("Agregar sucursal", style: titleStyle,),
       ),
       body: new Column(
         children: <Widget>[

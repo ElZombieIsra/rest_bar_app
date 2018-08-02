@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:rest_bar/theme/style.dart';
 
 class SideBarUser extends StatefulWidget{
   const SideBarUser({Key key}) : super(key: key);
@@ -15,8 +16,8 @@ class SideBarUserState extends State<SideBarUser>{
         padding: EdgeInsets.zero,
         children: <Widget>[
           new DrawerHeader(
-            child: new Text('Lidanys'),
-            decoration: new BoxDecoration(color: Colors.orange),
+            child: new Text('Lidanys', style: titleStyleBig,),
+            decoration: new BoxDecoration(color: primaryColor),
           ),
           new ListTile(
             title: new Text("Menú"),
