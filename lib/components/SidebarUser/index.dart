@@ -37,7 +37,7 @@ class SideBarUserState extends State<SideBarUser>{
             title: new Text('Carrito'),
             onTap: (){
               Navigator.pop(context);
-              Navigator.pushReplacementNamed(context, '/CartUser');
+              Navigator.pushNamed(context, '/CartUser');
             },
           ),
         ],

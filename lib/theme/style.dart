@@ -7,7 +7,8 @@ TextStyle textStyle = const TextStyle(
   fontFamily: 'Graphie',
 );
 
-const double letterSpacingRhode = 4.0;
+const double letterSpacingRhode = 3.0;
+const double letterSpacingTaller = 8.0;
 
 ThemeData appTheme = new ThemeData(
   primaryColor: primaryColor,
@@ -17,6 +18,7 @@ ThemeData appTheme = new ThemeData(
 
 const Color primaryColor = const Color.fromRGBO(255, 204, 79, 1.0);
 const Color secondaryColor = const Color.fromRGBO(255, 84, 73, 1.0);
+const Color thirdColor = const Color.fromRGBO(16, 124, 121, 1.0);
 const Color mutedColor = const Color.fromRGBO(179, 180, 179, 1.0);
 
 const TextStyle titleStyle = const TextStyle(
@@ -28,11 +30,11 @@ const TextStyle titleStyle = const TextStyle(
 Color iconsAppbarColor = const Color(0xFFFFFFFF);
 
 const TextStyle titleStyleBig = const TextStyle(
-  fontFamily: 'Rhode',
+  fontFamily: 'Taller',
   fontSize: 40.0,
   fontWeight: FontWeight.bold,
-  letterSpacing: letterSpacingRhode,
-  color: const Color(0XFFFFFFFF),
+  letterSpacing: letterSpacingTaller,
+  color: thirdColor,
 );
 
 Color textFieldColor = const Color.fromRGBO(255, 255, 255, 0.1);

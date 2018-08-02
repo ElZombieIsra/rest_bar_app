@@ -63,47 +63,67 @@ class HomeUserState extends State<HomeUser>{
       ),
       body: new Column(
         children: <Widget>[
-          new Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              new DropdownButton(
-                hint: new Text(
-                  "Sucursales",
-                  style: new TextStyle(color: Colors.black),
-                ),
-                items: sucursales.map((String value) {
-                  return new DropdownMenuItem<String>(
-                    value: value,
-                    child: new Text(value),
-                  );
-                }).toList(),
-                onChanged: (_){},
-              ),
-              new Container(
-                width: (screenSize.width/3)*2,
-                child: new SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: new Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: categorias.map((cat){
-                      return new RaisedButton(
-                        child: new Text(cat),
-                        onPressed:(){},
-                      );
-                    }).toList(),
+          new Container(
+            //color: thirdColor,
+            child: new Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                new Container(
+                  padding: new EdgeInsets.all(4.0),
+                  width: screenSize.width/3,
+                  child: new RaisedButton(
+                    color: secondaryColor,
+                    shape: shapeButtons,
+                    onPressed: (){},
+                    child: new DropdownButton(
+                      hint: new Text(
+                        "Sucursales",
+                        style: buttonsTextStyle,
+                      ),
+                      items: sucursales.map((String value) {
+                        return new DropdownMenuItem<String>(
+                          value: value,
+                          child: new Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (_){},
+                    ),
                   ),
                 ),
-              )
-            ],
+                new Container(
+                  width: (screenSize.width/3)*2,
+                  child: new SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: new Container(
+                      padding: new EdgeInsets.all(4.0),
+                      child: new Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: categorias.map((cat){
+                        return new Container(
+                          margin: new EdgeInsets.all(2.0),
+                          child: new RaisedButton(
+                            color: secondaryColor,
+                            child: new Text(cat, style: buttonsTextStyle,),
+                            onPressed:(){},
+                            shape: shapeButtons
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                    )
+                  ),
+                )
+              ],
+            ),
           ),
           new Container(
-            height: (screenSize.height/5)*4,
+            height: (screenSize.height/8)*6,
             child: new SingleChildScrollView(
               padding: new EdgeInsets.all(5.0),
               child: new Column(
                 children: cards.map((prod){
-                  int index = cards.indexOf(prod);
+                  // int index = cards.indexOf(prod);
                   return new MenuCard(
                     title: prod['title'],
                     subtitle: prod['subtitle'],
