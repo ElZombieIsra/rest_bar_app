@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rest_bar/screens/Home/style.dart';
+import 'package:rest_bar/screens/Home/DetallePedido/detallePedido.dart';
 import 'package:rest_bar/services/codigosProcedencia.dart';
 
 // Crea una card con los datos recibidos
@@ -32,6 +33,22 @@ class OrderCard extends StatelessWidget {
     List datosProcedencia = codigos.codigo(codeProcedencia);
     procedencia = datosProcedencia[0];
     textProcedenciaStyle = datosProcedencia[1];
+
+    Text subtitle = new Text(
+      procedencia, 
+      style: textProcedenciaStyle,
+    );
+    // Crea un objeto del pedido
+    var pedido = {
+      'id': cardId,
+      'name': 'Jon Doe',
+      'number': 5523230000,
+      'email': 'raul@epsidev.com',
+      'details': details,
+      'origin': subtitle,
+      'paymentType': 1,
+      'statusCode':1,
+    };
     return ( 
       new Card(
         elevation: 5.0,
@@ -40,11 +57,16 @@ class OrderCard extends StatelessWidget {
           children: <Widget>[
             new ListTile(
               leading: const Icon(Icons.fastfood),
-              title: new Text(cardId),
-              subtitle: new Text(
-                procedencia, 
-                style: textProcedenciaStyle,
+              title: new FlatButton(
+                child: new Text(cardId),
+                onPressed: () => Navigator.push(
+                  context, 
+                  new MaterialPageRoute(
+                    builder: (context) => new DetallePedido(pedido: pedido,),
+                  ),
+                ),
               ),
+              subtitle: subtitle,
               trailing: !previuos 
                 ? new RaisedButton(
                     child: const Text(

@@ -35,7 +35,7 @@ class HomeUserState extends State<HomeUser>{
       'title':'Mexicana',
       'subtitle':'Lorem ipsum dolor sit amet',
       'price':'277',
-    }];
+  }];
   final sucursales = ['uhs', 'kjh', '34e'];
   final categorias = ['Hamburguesas', 'Especiales', 'Postres', 'Tamarindos'];
   @override
@@ -45,14 +45,19 @@ class HomeUserState extends State<HomeUser>{
     final Size screenSize = MediaQuery.of(context).size;
     return new Scaffold(
       key: _scaffoldKey,
+      // Barra lateral
       drawer: new SideBarUser(),
       appBar: new AppBar(
+        // Botón que abre la barra lateral con color definido.
         leading:  new IconButton(
           icon: new Icon(Icons.dehaze), 
           color: iconsAppbarColor,
+          // Función que abre la barra lateral
           onPressed: () => _scaffoldKey.currentState.openDrawer(),
         ),
+        // Título de la vista
         title: const Text('Menú', style: titleStyle,),
+        // Botón de carrito de compra
         actions: <Widget>[
           new IconButton(
             icon: new Icon(Icons.shopping_cart), 
